@@ -80,8 +80,14 @@ class SuperTopicHandler(object):
                 log.error('校验参数不存在')
                 break
 
-            card_group = response.json().get('cards', [{}])[0].get('card_group', [])
-            cardlistInfo = response.json().get('cardlistInfo', [{}])
+            try:
+                card_group = response.json().get('cards', [{}])[0].get('card_group', [])
+            except:
+                continue
+            try:
+                cardlistInfo = response.json().get('cardlistInfo', [{}])
+            except:
+                continue
 
             since_id = str(cardlistInfo["since_id"])
             try:
